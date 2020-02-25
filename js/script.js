@@ -27,8 +27,8 @@ class MyLibrary {
   }
   render() {
     const table = document.getElementById('table');
-    this.books.forEach(book => {
-      table.appendChild(createTableRow(book))
+    this.books.forEach( (book,index) => {
+      table.appendChild(createTableRow(book,index))
     })
   }
   insert(book){
