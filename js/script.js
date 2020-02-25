@@ -48,7 +48,7 @@ myLibrary.insert(
   new Book('Name Book 4', 'Author Name', 434)
 )
 
-//myLibrary.delete('Name Book 1')
+myLibrary.remove(0)
 
 
 
