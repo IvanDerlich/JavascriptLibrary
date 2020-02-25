@@ -5,9 +5,9 @@ function Book(name, author, pages) {
   this.isReaded = false;
 }
 
-const createTableRow = book => {
+const createTableRow = (book,id) => {
   const row = document.createElement('tr');
-
+  row.id = id
   const dataRow = `
   <td>${book.name}</td>
   <td>${book.author}</td>
