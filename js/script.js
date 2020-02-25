@@ -31,11 +31,11 @@ class MyLibrary {
       table.appendChild(createTableRow(book))
     })
   }
-  add(){
-
+  insert(book){
+    this.books.push(book)
   }
   remove(){
-
+    
   }
 }
 
@@ -43,6 +43,15 @@ const myLibrary = new MyLibrary([
   new Book('Name Book 1', 'Author Name', 434),
   new Book('Name Book 2', 'Author Name', 434), 
   new Book('Name Book 3', 'Author Name', 434)]);
+
+myLibrary.insert(
+  new Book('Name Book 4', 'Author Name', 434)
+)
+
+//myLibrary.delete('Name Book 1')
+
+
+
 myLibrary.render()
 
 
