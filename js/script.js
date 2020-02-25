@@ -34,8 +34,8 @@ class MyLibrary {
   insert(book){
     this.books.push(book)
   }
-  remove(){
-    
+  remove(index){
+    this.books.splice(index,1)
   }
 }
 
