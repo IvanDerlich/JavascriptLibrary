@@ -5,15 +5,6 @@ function Book(name, author, pages) {
   this.isReaded = false;
 }
 
-class MyLibrary {
-  constructor(array) {
-    this.books = array;
-  }
-}
-
-const myLibrary = new MyLibrary([new Book('Name Book', 'Author Name', 434), new Book('Name Book', 'Author Name', 434), new Book('Name Book', 'Author Name', 434)]);
-
-const table = document.getElementById('table');
 const createTableRow = book => {
   const row = document.createElement('tr');
 
@@ -30,4 +21,38 @@ const createTableRow = book => {
   return row;
 };
 
-table.appendChild(createTableRow(myLibrary.books[0]));
+class MyLibrary {
+  constructor(array) {
+    this.books = array;
+  }
+  render() {
+    const table = document.getElementById('table');
+    this.books.forEach(book => {
+      table.appendChild(createTableRow(book))
+    })
+  }
+  add(){
+
+  }
+  remove(){
+
+  }
+}
+
+const myLibrary = new MyLibrary([
+  new Book('Name Book 1', 'Author Name', 434),
+  new Book('Name Book 2', 'Author Name', 434), 
+  new Book('Name Book 3', 'Author Name', 434)]);
+myLibrary.render()
+
+
+
+
+/*
+  myLibrary tenga: 
+  propiedades
+    books: array
+  metodos
+    show() -> Agregue a la tabla todos los elementos del array
+*/
+
