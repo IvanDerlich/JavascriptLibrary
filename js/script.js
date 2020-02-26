@@ -3,7 +3,7 @@ function Book(id, name, author, pages) {
   this.author = author;
   this.pages = pages;
   this.isReaded = false;
-  this.id = id
+  this.id = id;
 }
 
 const createTableRow = (book) => {
@@ -25,17 +25,17 @@ const createTableRow = (book) => {
 class MyLibrary {
   constructor(array) {
     this.books = array;
-    this.id = this.books.length
+    this.id = this.books.length;
   }
 
   render() {
     const table = document.getElementById('table');
-    
+
     table.appendChild(createTableRow(this.books[this.id - 1]));
   }
 
   insert(book) {
-    this.id++
+    this.id++;
     // console.log(instanc)
     this.books.push(new Book(this.id, book.name, book.author, book.pages));
   }
@@ -51,23 +51,23 @@ const myLibrary = new MyLibrary([
   new Book(1, 'Name Book 2', 'Author Name', 434),
   new Book(2, 'Name Book 3', 'Author Name', 434)]);
 
-const myForm = document.getElementById('my_form')
+const myForm = document.getElementById('my_form');
 myForm.addEventListener('submit', e => {
-  let name = e.target.elements[0].value
-  let author = e.target.elements[1].value
-  let pages = e.target.elements[2].value
+  const name = e.target.elements[0].value;
+  const author = e.target.elements[1].value;
+  const pages = e.target.elements[2].value;
 
-  let book = {name, author, pages}
+  const book = { name, author, pages };
 
-  myLibrary.insert(book)
-  myLibrary.render()
-  e.preventDefault()
-})
+  myLibrary.insert(book);
+  myLibrary.render();
+  e.preventDefault();
+});
 
 addEventListener('load', e => {
   const table = document.getElementById('table');
-  console.log(myLibrary.books)
+  console.log(myLibrary.books);
   myLibrary.books.forEach((book) => {
     table.appendChild(createTableRow(book));
   });
-})
+});
