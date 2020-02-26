@@ -25,44 +25,49 @@ const createTableRow = (book) => {
 class MyLibrary {
   constructor(array) {
     this.books = array;
+    this.id = this.books.length
   }
+
   render() {
     const table = document.getElementById('table');
-    this.books.forEach( (book,index) => {
-      table.appendChild(createTableRow(book,index))
-    })
+    
+    table.appendChild(createTableRow(this.books[this.id - 1]));
   }
-  insert(book){
-    this.books.push(book)
+
+  insert(book) {
+    this.id++
+    // console.log(instanc)
+    this.books.push(new Book(this.id, book.name, book.author, book.pages));
   }
-  remove(index){
-    this.books.splice(index,1)
+
+  remove(index) {
+    this.books.splice(index, 1);
   }
 }
 
+
 const myLibrary = new MyLibrary([
-  new Book('Name Book 1', 'Author Name', 434),
-  new Book('Name Book 2', 'Author Name', 434), 
-  new Book('Name Book 3', 'Author Name', 434)]);
+  new Book(0, 'Name Book 1', 'Author Name', 434),
+  new Book(1, 'Name Book 2', 'Author Name', 434),
+  new Book(2, 'Name Book 3', 'Author Name', 434)]);
 
-myLibrary.insert(
-  new Book('Name Book 4', 'Author Name', 434)
-)
+const myForm = document.getElementById('my_form')
+myForm.addEventListener('submit', e => {
+  let name = e.target.elements[0].value
+  let author = e.target.elements[1].value
+  let pages = e.target.elements[2].value
 
-myLibrary.remove(0)
+  let book = {name, author, pages}
 
+  myLibrary.insert(book)
+  myLibrary.render()
+  e.preventDefault()
+})
 
-
-myLibrary.render()
-
-
-
-
-/*
-  myLibrary tenga: 
-  propiedades
-    books: array
-  metodos
-    show() -> Agregue a la tabla todos los elementos del array
-*/
-
+addEventListener('load', e => {
+  const table = document.getElementById('table');
+  console.log(myLibrary.books)
+  myLibrary.books.forEach((book) => {
+    table.appendChild(createTableRow(book));
+  });
+})
