@@ -1,19 +1,20 @@
-function Book(name, author, pages) {
+function Book(id, name, author, pages) {
   this.name = name;
   this.author = author;
   this.pages = pages;
   this.isReaded = false;
+  this.id = id
 }
 
-const createTableRow = (book,id) => {
+const createTableRow = (book) => {
   const row = document.createElement('tr');
-  row.id = id
+  row.id = book.id;
   const dataRow = `
   <td>${book.name}</td>
   <td>${book.author}</td>
   <td>${book.pages}</td>
   <td>${book.isReaded}</td>
-  <td></td>
+  <td>fd</td>
   `;
 
   row.insertAdjacentHTML('beforeend', dataRow);
