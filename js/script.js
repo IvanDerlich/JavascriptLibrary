@@ -95,7 +95,6 @@ myForm.addEventListener('submit', e => {
     isRead,
   );
   myLibrary.newId += 1;
-  console.log(book);
   myLibrary.insert(book);
 
   Array.from(e.target.elements).filter(element => element.type !== 'submit').forEach(element => { element.value = ''; });
