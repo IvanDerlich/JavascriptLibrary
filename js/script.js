@@ -97,7 +97,7 @@ myForm.addEventListener('submit', e => {
   myLibrary.newId += 1;
   myLibrary.insert(book);
 
-  Array.from(e.target.elements).filter(element => element.type !== 'submit').forEach(element => { element.value = ''; });
+  //Array.from(e.target.elements).filter(element => element.type !== 'submit').forEach(element => { element.value = ''; });
   e.preventDefault();
 });
 
