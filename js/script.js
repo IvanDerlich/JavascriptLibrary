@@ -6,45 +6,74 @@ function Book(id, name, author, pages) {
   this.id = id;
 }
 
-const createTableRow = (book) => {
-  const row = document.createElement('tr');
-  row.id = book.id;
-  const dataRow = `
-  <td>${book.name}</td>
-  <td>${book.author}</td>
-  <td>${book.pages}</td>
-  <td>${book.isReaded}</td>
-  <td>fd</td>
-  `;
-
-  row.insertAdjacentHTML('beforeend', dataRow);
-
-  return row;
-};
-
 class MyLibrary {
   constructor(array) {
     this.books = array;
-    this.id = this.books.length;
+    this.newId = this.books.length;
+
+    this.createTableRow = (book) => {
+      const row = document.createElement('tr');
+      row.id = book.id;
+      const dataRow = `
+      <td>${book.name}</td>
+      <td>${book.author}</td>
+      <td>${book.pages}</td>
+      <td><input type="checkbox" class='checkbox'/></td>
+      <td><button>Delete</button></td>
+      `;
+
+      row.insertAdjacentHTML('beforeend', dataRow);
+
+      const checkbox = row.querySelector('td > .checkbox');
+
+      checkbox.addEventListener('click', () => {
+        let index = 'd';
+        this.books.forEach((book, i) => {
+          if (book.id === parseInt(row.id, 10)) index = i;
+        });
+        book = this.books[index];
+        if (book.isReaded === true) {
+          book.isReaded = false;
+        } else {
+          book.isReaded = true;
+        }
+      });
+
+      const button = row.querySelector('td>button');
+      button.addEventListener('click', e => {
+        this.remove(parseInt(row.id, 10));
+        const table = document.getElementById('table');
+        table.removeChild(row);
+        e.preventDefault();
+      });
+
+      return row;
+    };
   }
 
   render() {
     const table = document.getElementById('table');
-
-    table.appendChild(createTableRow(this.books[this.id - 1]));
+    if (this.newId > 1) {
+      table.appendChild(this.createTableRow(this.books[this.newId]));
+    }
   }
 
   insert(book) {
-    this.id++;
-    // console.log(instanc)
-    this.books.push(new Book(this.id, book.name, book.author, book.pages));
+    this.books.push(book);
+    const table = document.getElementById('table');
+    table.appendChild(this.createTableRow(book));
   }
 
-  remove(index) {
+  remove(bookId) {
+    let index = 'd';
+    this.books.forEach((book, i) => {
+      if (book.id === bookId) {
+        index = i;
+      }
+    });
     this.books.splice(index, 1);
   }
 }
-
 
 const myLibrary = new MyLibrary([
   new Book(0, 'Name Book 1', 'Author Name', 434),
@@ -57,17 +86,19 @@ myForm.addEventListener('submit', e => {
   const author = e.target.elements[1].value;
   const pages = e.target.elements[2].value;
 
-  const book = { name, author, pages };
+  const book = new Book(myLibrary.newId, name, author, pages);
+  myLibrary.newId += 1;
 
   myLibrary.insert(book);
-  myLibrary.render();
+
+  Array.from(e.target.elements).filter(element => element.type !== 'submit').forEach(element => { element.value = ''; });
   e.preventDefault();
 });
 
-addEventListener('load', e => {
+window.addEventListener('load', e => {
   const table = document.getElementById('table');
-  console.log(myLibrary.books);
   myLibrary.books.forEach((book) => {
-    table.appendChild(createTableRow(book));
+    table.appendChild(myLibrary.createTableRow(book));
   });
+  e.preventDefault();
 });
