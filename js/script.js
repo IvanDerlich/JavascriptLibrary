@@ -1,8 +1,8 @@
-function Book(id, name, author, pages) {
+function Book(id, name, author, pages, isRead) {
   this.name = name;
   this.author = author;
   this.pages = pages;
-  this.isReaded = false;
+  this.isRead = isRead;
   this.id = id;
 }
 
@@ -15,10 +15,10 @@ class MyLibrary {
       const row = document.createElement('tr');
       row.id = book.id;
       const dataRow = `
+      <td><input type="checkbox" class='checkbox'${book.isRead ? 'checked' : ''}/></td>
       <td>${book.name}</td>
       <td>${book.author}</td>
-      <td>${book.pages}</td>
-      <td><input type="checkbox" class='checkbox'/></td>
+      <td>${book.pages}</td>      
       <td><button>Delete</button></td>
       `;
 
@@ -32,10 +32,10 @@ class MyLibrary {
           if (book.id === parseInt(row.id, 10)) index = i;
         });
         book = this.books[index];
-        if (book.isReaded === true) {
-          book.isReaded = false;
+        if (book.isRead === true) {
+          book.isRead = false;
         } else {
-          book.isReaded = true;
+          book.isRead = true;
         }
       });
 
@@ -82,13 +82,20 @@ const myLibrary = new MyLibrary([
 
 const myForm = document.getElementById('my_form');
 myForm.addEventListener('submit', e => {
-  const name = e.target.elements[0].value;
-  const author = e.target.elements[1].value;
-  const pages = e.target.elements[2].value;
+  const name = document.getElementsByName('name')[0].value;
+  const author = document.getElementsByName('book_author')[0].value;
+  const pages = document.getElementsByName('pages')[0].value;
+  const isRead = document.getElementsByName('isRead')[0].checked;
 
-  const book = new Book(myLibrary.newId, name, author, pages);
+  const book = new Book(
+    myLibrary.newId,
+    name,
+    author,
+    pages,
+    isRead,
+  );
   myLibrary.newId += 1;
-
+  console.log(book);
   myLibrary.insert(book);
 
   Array.from(e.target.elements).filter(element => element.type !== 'submit').forEach(element => { element.value = ''; });

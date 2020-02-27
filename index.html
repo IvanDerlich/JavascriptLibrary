@@ -12,35 +12,42 @@
 </head>
 
 <body>
+  <header>
 
-  <form method="GET" id="my_form"></form>
+  </header>
+  <main>
+    <form method="GET" id="my_form"></form>
+    <table id='table'>
+      <tr>
+        <th>Read</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Pages</th>        
+        <th></th>
+      </tr>
+      <tr>
+          <td>
+            <input type="checkbox" name="isRead"  form="my_form"/>
+          </td>
+          <td>
+            <input type="text" name="name" form="my_form" required placeholder="Name:" value="Name"/>
+          </td>
+          <td>
+            <input type="text" name="book_author" form="my_form" required placeholder="Author:" value="Author"/>
+          </td>
+          <td>
+            <input type="number" name="pages" form="my_form" required placeholder="Pages:" value="33"/>
+          </td>
+          <td>
+            <input type="submit" form="my_form" value="Add"/>
+          </td>
+      </tr>
+      
+    </table>
 
-  <table id='table'>
-    
-     <tr>
-        <td>
-            <input type="text" name="name" form="my_form" required placeholder="Name:"/>
-        </td>
-        <td>
-          <input type="text" name="author" form="my_form" required placeholder="Author:"/>
-      </td>
-      <td>
-        <input type="number" name="pages" form="my_form" required placeholder="Pages:"/>
-    </td>
-        <td>
-            <input type="submit" form="my_form" value="Add Book"/>
-        </td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Author</th>
-      <th>Pages</th>
-      <th>Read</th>
-      <th></th>
-    </tr>
-  </table>
-
-  <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
+  </main>
+  <footer></footer>
 </body>
 
 </html>
