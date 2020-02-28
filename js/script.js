@@ -13,21 +13,24 @@ class MyLibrary {
     this.newId = this.books.length;
 
     this.createTableRow = (book) => {
+      const {
+        name, author, pages, isRead,
+      } = book;
       const row = document.createElement('tr');
       row.id = book.id;
       row.classList.add('table-row');
       row.classList.add('book-info');
 
-      if (book.isRead) {
+      if (isRead) {
         row.classList.add('checked-book');
       } else {
         row.classList.remove('checked-book');
       }
       const dataRow = `
-      <td class='row-data__small' ><input type="checkbox" class='checkbox '${book.isRead ? 'checked' : ''}/></td>
-      <td class='row-data' title='${book.name}'>${book.name}</td>
-      <td class='row-data' title='${book.author}'>${book.author}</td>
-      <td class='row-data' title='${book.pages}'>${book.pages}</td>      
+      <td class='row-data__small' ><input type="checkbox" class='checkbox '${isRead ? 'checked' : ''}/></td>
+      <td class='row-data' title='${name}'>${name}</td>
+      <td class='row-data' title='${author}'>${author}</td>
+      <td class='row-data' title='${pages}'>${pages}</td>      
       <td class='row-data__small'><button class='btn-icon btn-delete'><i data-feather="trash"></i></button></td>
       `;
 
@@ -41,7 +44,7 @@ class MyLibrary {
           if (book.id === parseInt(row.id, 10)) index = i;
         });
         book = this.books[index];
-        if (book.isRead === true) {
+        if (isRead === true) {
           book.isRead = false;
           row.classList.remove('checked-book');
         } else {
