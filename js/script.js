@@ -1,3 +1,4 @@
+/* global feather */
 function Book(id, name, author, pages, isRead) {
   this.name = name;
   this.author = author;
@@ -14,12 +15,20 @@ class MyLibrary {
     this.createTableRow = (book) => {
       const row = document.createElement('tr');
       row.id = book.id;
+      row.classList.add('table-row');
+      row.classList.add('book-info');
+
+      if (book.isRead) {
+        row.classList.add('checked-book');
+      } else {
+        row.classList.remove('checked-book');
+      }
       const dataRow = `
-      <td><input type="checkbox" class='checkbox'${book.isRead ? 'checked' : ''}/></td>
-      <td>${book.name}</td>
-      <td>${book.author}</td>
-      <td>${book.pages}</td>      
-      <td><button>Delete</button></td>
+      <td class='row-data__small' ><input type="checkbox" class='checkbox '${book.isRead ? 'checked' : ''}/></td>
+      <td class='row-data' title='${book.name}'>${book.name}</td>
+      <td class='row-data' title='${book.author}'>${book.author}</td>
+      <td class='row-data' title='${book.pages}'>${book.pages}</td>      
+      <td class='row-data__small'><button class='btn-icon btn-delete'><i data-feather="trash"></i></button></td>
       `;
 
       row.insertAdjacentHTML('beforeend', dataRow);
