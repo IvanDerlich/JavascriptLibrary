@@ -17,29 +17,31 @@
   </header>
   <main>
     <form method="GET" id="my_form"></form>
-    <table id='table'>
-      <tr>
-        <th>Read</th>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Pages</th>        
-        <th></th>
+    <table id='table' class="table">
+      <tr class="table-row table-row__header">
+        <th class="row-data__small">Read</th>
+        <th class="row-data">Name</th>
+        <th class="row-data">Author</th>
+        <th class="row-data">Pages</th>        
+        <th class="row-data__small"></th>
       </tr>
-      <tr>
-          <td>
+      <tr class="table-row__form table-row">
+          <td class="row-data__small">
             <input type="checkbox" name="isRead"  form="my_form"/>
           </td>
-          <td>
-            <input type="text" name="name" form="my_form" required placeholder="Name:" value="Name"/>
+          <td class="row-data">
+            <input type="text" class='input' name="name" form="my_form" required placeholder="Name:" />
           </td>
-          <td>
-            <input type="text" name="book_author" form="my_form" required placeholder="Author:" value="Author"/>
+          <td class="row-data">
+            <input type="text" class='input' name="book_author" form="my_form" required placeholder="Author:" />
           </td>
-          <td>
-            <input type="number" name="pages" form="my_form" required placeholder="Pages:" value="33"/>
+          <td class="row-data">
+            <input type="number" class='input' name="pages" form="my_form" required placeholder="Pages:" min="0"/>
           </td>
-          <td>
-            <input type="submit" form="my_form" value="Add"/>
+          <td class="row-data__small">
+            <button type="submit" form="my_form" value="Add" class='btn-icon btn-add'>
+              <i data-feather="plus-circle"></i>
+            </button>
           </td>
       </tr>
       
