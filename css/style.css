@@ -59,6 +59,12 @@
   margin-left: 12px;
 }
 
+.input-cell {
+  overflow-y: auto;
+  white-space: normal;
+  text-overflow: initial;
+}
+
 .row-data__small {
   flex-basis: 260px;
   display: flex;
