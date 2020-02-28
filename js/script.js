@@ -43,8 +43,10 @@ class MyLibrary {
         book = this.books[index];
         if (book.isRead === true) {
           book.isRead = false;
+          row.classList.remove('checked-book');
         } else {
           book.isRead = true;
+          row.classList.add('checked-book');
         }
       });
 
@@ -55,6 +57,7 @@ class MyLibrary {
         table.removeChild(row);
         e.preventDefault();
       });
+
 
       return row;
     };
@@ -85,9 +88,9 @@ class MyLibrary {
 }
 
 const myLibrary = new MyLibrary([
-  new Book(0, 'Name Book 1', 'Author Name', 434),
-  new Book(1, 'Name Book 2', 'Author Name', 434),
-  new Book(2, 'Name Book 3', 'Author Name', 434)]);
+  new Book(0, 'Functional Javascript', 'Luis Atencio', 434, false),
+  new Book(1, 'Classic Computer Science Problems in Python', 'David Kopec', 324, true),
+  new Book(2, 'Algorithm design manual', 'Steve S. Skiena', 854, false)]);
 
 const myForm = document.getElementById('my_form');
 myForm.addEventListener('submit', e => {
@@ -107,6 +110,10 @@ myForm.addEventListener('submit', e => {
   myLibrary.insert(book);
 
   Array.from(e.target.elements).filter(element => element.type !== 'submit').forEach(element => { element.value = ''; });
+  document.getElementsByName('isRead')[0].checked = false;
+  /* eslint no-undef: "error" */
+  feather.replace();
+
   e.preventDefault();
 });
 
@@ -115,5 +122,6 @@ window.addEventListener('load', e => {
   myLibrary.books.forEach((book) => {
     table.appendChild(myLibrary.createTableRow(book));
   });
+  window.feather.replace();
   e.preventDefault();
 });
