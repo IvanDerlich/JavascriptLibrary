@@ -44,7 +44,7 @@ class MyLibrary {
           if (book.id === parseInt(row.id, 10)) index = i;
         });
         book = this.books[index];
-        if (isRead === true) {
+        if (book.isRead) {
           book.isRead = false;
           row.classList.remove('checked-book');
         } else {
