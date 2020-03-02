@@ -27,7 +27,11 @@ class MyLibrary {
         row.classList.remove('checked-book');
       }
       const dataRow = `
-      <td class='row-data__small' ><input type="checkbox" class='checkbox '${isRead ? 'checked' : ''}/></td>
+      <td class='row-data__small' >
+        <button class="checkbox ${isRead ? 'checked' : ''}">
+          ${isRead ? 'Read' : 'Unread'}
+        </button>
+      </td>
       <td class='row-data' title='${name}'>${name}</td>
       <td class='row-data' title='${author}'>${author}</td>
       <td class='row-data' title='${pages}'>${pages}</td>      
@@ -47,13 +51,15 @@ class MyLibrary {
         if (book.isRead) {
           book.isRead = false;
           row.classList.remove('checked-book');
+          checkbox.innerText = 'Unread';
         } else {
           book.isRead = true;
           row.classList.add('checked-book');
+          checkbox.innerText = 'Read';
         }
       });
 
-      const button = row.querySelector('td>button');
+      const button = row.querySelector('td > .btn-delete');
       button.addEventListener('click', e => {
         this.remove(parseInt(row.id, 10));
         const table = document.getElementById('table');

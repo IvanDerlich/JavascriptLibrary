@@ -136,9 +136,38 @@
   border-color: #2ED573;
 }
 
-.checked-book > *{
+.checked-book > .row-data{
   color: #2ED573;
   text-decoration-line: line-through;
+}
+
+.checked-book > td > .checkbox {
+  color: #2ED573;
+}
+
+.checked-book > td > .checkbox {
+  background: rgba(46, 213, 116, 0.116);
+}
+
+.checkbox {
+  font-size: 12px;
+  font-weight: 500;
+  color: #878787;
+  border: none;
+  background: transparent;
+  color: rgb(245, 53, 79);
+  padding: 3px 8px;
+  border-radius: 4px;
+  background-color: rgba(245, 53, 79, 0.116);
+  text-decoration: none;
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+.checkbox:focus {
+  outline: none;
 }
 
 header {
