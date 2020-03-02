@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+
+  </header>
+  <main>
+    <form method="GET" id="my_form"></form>
+    <table id='table' class="table">
+      <tr class="table-row table-row__header">
+        <th class="row-data__small">Read</th>
+        <th class="row-data">Name</th>
+        <th class="row-data">Author</th>
+        <th class="row-data">Pages</th>        
+        <th class="row-data__small"></th>
+      </tr>
+      <tr class="table-row__form table-row">
+          <td class="row-data__small">
+            <input type="checkbox" name="isRead"  form="my_form"/>
+          </td>
+          <td class="row-data input-cell">
+            <input type="text" class='input' name="name" form="my_form" required placeholder="Name:" />
+          </td>
+          <td class="row-data input-cell">
+            <input type="text" class='input' name="book_author" form="my_form" required placeholder="Author:" />
+          </td>
+          <td class="row-data input-cell">
+            <input type="number" class='input' name="pages" form="my_form" required placeholder="Pages:" min="0"/>
+          </td>
+          <td class="row-data__small">
+            <button type="submit" form="my_form" value="Add" class='btn-icon btn-add'>
+              <i data-feather="plus-circle"></i>
+            </button>
+          </td>
+      </tr>
+      
+    </table>
+
+    <script src="js/script.js"></script>
+  </main>
+  <footer></footer>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</body>
+
+</html>
